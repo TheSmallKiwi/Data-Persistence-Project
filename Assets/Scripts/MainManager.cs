@@ -72,5 +72,14 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        if (ScoreHandler.Instance == null) return;
+        if (m_Points > ScoreHandler.Instance.hiScore)
+        {
+            ScoreHandler.Instance.hiScore = m_Points;
+            ScoreHandler.Instance.scorer = ScoreHandler.Instance.currentPlayer;
+            ScoreHandler.Instance.SaveScore();
+        }
+        
+        
     }
 }
